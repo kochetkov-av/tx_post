@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=txpost_password
+      - POSTGRES_DB=txpost
+    ports:
+      - 5432:5432
+
+  app:
+    image: txpost/txpost
+    container_name: app
+    restart: always
+    ports:
+      - 8080:4000
+    volumes:
+      - ./config-docker.yaml:/app/config.yaml
+    depends_on:
+      - postgres
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 4001:8080

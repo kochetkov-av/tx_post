@@ -1,0 +1,12 @@
+db:
+  host: postgres
+  port: 5432
+  dbname: txpost
+  user: postgres
+  password: txpost_password
+  sslmode: disable
+sources:
+  - game
+  - server
+  - payment
+cancellation_interval: 1

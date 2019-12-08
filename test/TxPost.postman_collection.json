@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "572dfbbb-40b9-4a89-8d20-8e0d2907a3c1",
+		"name": "TxPost",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Init balance",
+			"item": [
+				{
+					"name": "Transaction initial",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "513066e1-c836-42a5-a598-24da02de3d0f",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Source-Type",
+								"type": "text",
+								"value": "game"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state\": \"win\",\n    \"amount\": \"1000000\",\n    \"transactionId\": \"{{$guid}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/tx",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tx"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Change balance",
+			"item": [
+				{
+					"name": "Transaction win",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "148cf63a-169a-455a-aa20-ada92f148c3b",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Source-Type",
+								"value": "game",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state\": \"win\",\n    \"amount\": \"{{$randomInt}}.{{$randomInt}}\",\n    \"transactionId\": \"{{$guid}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/tx",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaction lost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "652f2b54-f694-4b88-9d1c-ceab2677027b",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Source-Type",
+								"type": "text",
+								"value": "server"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state\": \"lost\",\n    \"amount\": \"{{$randomInt}}.{{$randomInt}}\",\n    \"transactionId\": \"{{$guid}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/tx",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tx"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6b956dea-6a9c-4a51-a6e5-037d10db112a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6fcc212a-7f01-46c9-b010-41094da7f6eb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "50ef70c4-79f3-4ea7-889f-c4e4688ab1a1",
+			"key": "host",
+			"value": "http://localhost:4000",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
