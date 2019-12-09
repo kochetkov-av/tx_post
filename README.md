@@ -60,9 +60,12 @@ Adminer database web interface http://localhost:4001
 
 Default credentials:
 ```
-dbname: txpost
-user: postgres
-password: txpost_password
+System: PostgreSQL
+Server: postgres
+
+Username: postgres
+Password: txpost_password
+Database: txpost
 ```
 
 Send test transactions using Postman collection and Newman:

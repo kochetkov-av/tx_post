@@ -1,9 +1,9 @@
-.PHONY: build docker_build up clean
+.PHONY: build docker_build up clean seed
 
 build:
-	@echo "Build ..."
-	@go build -o=./.build/txpost ./src/
-	@echo "Build done"
+	echo "Build ..."
+	go build -o=./.build/txpost ./src/
+	echo "Build done"
 
 docker_build:
 	docker build -t txpost/txpost .
